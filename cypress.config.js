@@ -1,15 +1,14 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  // Define o Mochawesome como o gerador de relatórios padrão
     reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
-      reportDir: 'cypress/reports',
+      reportDir: 'cypress/reports/html',
       charts: true,
-      reportPageTitle: 'Relatório de Testes',
-      embeddedScreenshots: true, // Insere a imagem diretamente no HTML
-      inlineAssets: true,        // Empacota CSS/JS no próprio HTML
-      saveAllAttempts: false,    // Salva apenas a imagem da última tentativa se houver retry
+      reportPageTitle: 'Relatório de testes automatizados',
+      embeddedScreenshots: true, 
+      inlineAssets: true,       
+      saveAllAttempts: false,   
 
     },
   e2e: {
@@ -18,6 +17,10 @@ module.exports = defineConfig({
       'cypress/modules/**/*.{js,jsx,ts,tsx}'
     ],
     baseUrl: "https://automationexercise.com/",
+    viewportWidth: 1280,
+    viewportHeight: 720,
+    video: false,
+    screenshotOnRunFailure: true,
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
       return config;

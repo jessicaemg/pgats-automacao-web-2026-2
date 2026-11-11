@@ -12,11 +12,17 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // para não erro ao deslogar
+  if (err.message.includes('KeyError') || err.message.includes('user_id')) {
+    return false;
+  }
+});
 // Import commands.js using ES2015 syntax:
 import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 //biblioteca xpath 
-require('cypress-xpath');
+//require('cypress-xpath');
+import 'cypress-mochawesome-reporter/register';
